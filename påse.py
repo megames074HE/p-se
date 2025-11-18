@@ -27,20 +27,23 @@ while run:
         else:
             bag.append(input('\nskriv vad du vill spara: ').lower())
             print(Fore.GREEN, f'\ndu har {10 - len(bag)} platser kvar', Style.RESET_ALL)
-    elif choice == 'f':
-        query = input('\nVad vill du söka efter: ')
-        if query.lower() in bag:
-            print(Fore.GREEN, f'\nHittade: "{query}" in bag', Style.RESET_ALL)
-            choice = input(f'Vill du ta bort eller ändra {query}? [D]/[C]/[NEJ] ').lower()
             
-            if choice == 'd':
-                bag.remove(query)
-                print(Fore.GREEN, 'Den blev bortagen', Style.RESET_ALL)
-            elif choice == 'c':
-                new_query = input(f'Till vad vill du ändra {query}? ').lower()
-                bag.remove(query)
-                bag.append(new_query)
-                print(Fore.GREEN, 'Den har ändrats nu!', Style.RESET_ALL)
+    elif choice == 'f':
+        query = input('\nVad vill du söka efter: ').lower()
+        for thing in bag:
+            if thing.startswith(query):
+                print(Fore.GREEN, thing, Style.RESET_ALL)
+
+        choice = input(f'Vill du ta bort eller ändra {query}? [D]/[C]/[NEJ] ').lower()
+        
+        if choice == 'd':
+            bag.remove(query)
+            print(Fore.GREEN, 'Den blev bortagen', Style.RESET_ALL)
+        elif choice == 'c':
+            new_query = input(f'Till vad vill du ändra {query}? ').lower()
+            bag.remove(query)
+            bag.append(new_query)
+            print(Fore.GREEN, 'Den har ändrats nu!', Style.RESET_ALL)
 
         
     elif choice == 'd':
